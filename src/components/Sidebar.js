@@ -9,15 +9,28 @@ import {
 } from "@material-ui/icons";
 import React from "react";
 import SidebarList from "./SidebarList";
-import { auth } from "../firebase";
+import { auth, createTimestamp, db } from "../firebase";
 import "./Sidebar.css";
 import { NavLink, Switch, Route } from "react-router-dom";
+import useRooms from "../hooks/useRooms";
 
 export default function Sidebar({ user, page }) {
+  const rooms = useRooms();
+
   const [menu, setMenu] = React.useState(1);
 
   function signOut() {
     auth.signOut();
+  }
+
+  function createRoom() {
+    const roomName = prompt("Type the name of your room");
+    if (roomName.trim()) {
+      db.collection("rooms").add({
+        name: roomName,
+        timestamp: createTimestamp(),
+      });
+    }
   }
 
   let Nav;
@@ -103,30 +116,30 @@ export default function Sidebar({ user, page }) {
       {page.isMobile ? (
         <Switch>
           <Route path="/chats">
-            <SidebarList />
+            <SidebarList titlie="Chats" data={[]} />
           </Route>
           <Route path="/rooms">
-            <SidebarList />
+            <SidebarList title="Rooms" data={rooms} />
           </Route>
           <Route path="/users">
-            <SidebarList />
+            <SidebarList title="Users" data={[]} />
           </Route>
           <Route path="/search">
-            <SidebarList />
+            <SidebarList title="Chats" data={[]} />
           </Route>
         </Switch>
       ) : menu === 1 ? (
-        <SidebarList />
+        <SidebarList title="Chats" data={[]} />
       ) : menu === 2 ? (
-        <SidebarList />
+        <SidebarList title="Rooms" data={rooms} />
       ) : menu === 3 ? (
-        <SidebarList />
+        <SidebarList title="Users" data={[]} />
       ) : menu === 4 ? (
-        <SidebarList />
+        <SidebarList title="Search Results" data={[]} />
       ) : null}
 
       <div className="sidebar__chat--addRoom">
-        <IconButton>
+        <IconButton onClick={createRoom}>
           <Add />
         </IconButton>
       </div>

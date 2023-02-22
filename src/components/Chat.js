@@ -10,6 +10,7 @@ import { Avatar, IconButton, Menu, MenuItem } from "@material-ui/core";
 import { AddPhotoAlternate, ArrowBack, MoreVert } from "@material-ui/icons";
 import { v4 as uuid } from "uuid";
 import { createTimestamp, db, storage } from "../firebase";
+import useChatMessages from "../hooks/useChatMessages";
 
 export default function Chat({ user, page }) {
   const [image, setImage] = React.useState(null);
@@ -18,7 +19,10 @@ export default function Chat({ user, page }) {
 
   const { roomId } = useParams();
   const history = useHistory();
+  const messages = useChatMessages(roomId);
   const room = useRoom(roomId, user.uid);
+
+  console.log(messages);
 
   function onChange(event) {
     setInput(event.target.value);
@@ -149,7 +153,8 @@ export default function Chat({ user, page }) {
 
       <div className="chat__body--container">
         <div className="chat__body" style={{ height: page.height - 68 }}>
-          <ChatMessages />
+          <ChatMessages messages={messages} user={user} roomId={roomId} />
+          {/* <ChatMessages messages={messages} /> */}
         </div>
       </div>
 

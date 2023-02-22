@@ -38,7 +38,7 @@ export default function ChatMessages({ messages, user, roomId }) {
         ) : (
           <span className="chat__message--message">{message.message}</span>
         )}
-        <span className="chat__timestamp">{message.timestamp}</span>
+        <span className="chat__timestamp">{message.time}</span>
       </div>
     );
   });

@@ -6,6 +6,7 @@ import {
 } from "@material-ui/icons";
 import React from "react";
 import { createTimestamp, db, audioStorage } from "../firebase";
+import { v4 as uuid } from "uuid";
 import "./ChatFooter.css";
 import recordAudio from "./recordAudio";
 
@@ -113,6 +114,15 @@ export default function ChatFooter({
       });
   }
 
+  function audioInputChange(event) {
+    const audioFile = event.target.files[0];
+
+    if (audioFile) {
+      setAudioId("");
+      sendAudio(audioFile, uuid());
+    }
+  }
+
   const btnIcons = (
     <>
       <Send
@@ -144,7 +154,7 @@ export default function ChatFooter({
           placeholder="Type a message"
         />
 
-        {canRecord ? (
+        {!canRecord ? (
           <button
             onClick={
               input.trim() || (input === "" && image)
@@ -167,6 +177,7 @@ export default function ChatFooter({
               id="capture"
               accept="audio/*"
               capture
+              onChange={audioInputChange}
             />
           </>
         )}

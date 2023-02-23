@@ -2,8 +2,6 @@ import { CircularProgress } from "@material-ui/core";
 import AudioPlayer from "./AudioPlayer";
 
 export default function ChatMessages({ messages, user, roomId }) {
-  console.log(messages);
-  // return "HII";
   return messages.map((message) => {
     const isSender = message.uid === user.uid;
     return (

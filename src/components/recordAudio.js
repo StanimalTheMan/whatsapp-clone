@@ -29,6 +29,7 @@ export default function recordAudio() {
 
             resolve({ audioFile, audioUrl, play, audioName });
           });
+          mediaRecorder.stop();
         });
       }
       resolve({ start, stop });

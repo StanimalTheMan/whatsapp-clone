@@ -30,7 +30,7 @@ export default function ChatFooter({
     event.preventDefault();
     record.current = await recordAudio();
     inputRef.current.focus();
-    inputRef.current.style.width = "calc(100% -56px)";
+    inputRef.current.style.width = "calc(100% - 56px)";
     setRecording(true);
     setAudioId("");
   }

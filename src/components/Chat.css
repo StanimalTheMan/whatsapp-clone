@@ -89,6 +89,7 @@
 
 .chat__header--right > .MuiButtonBase-root {
   padding: 12px;
+  color: white;
 }
 
 .chat__body--container {

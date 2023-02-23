@@ -13,7 +13,7 @@
   align-items: center;
   padding: 10px 12px;
   border-right: 1px solid lightgrey;
-  background-color: #ededed;
+  background-color: black;
 }
 
 .sidebar__header--left {
@@ -31,6 +31,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   max-width: 100%;
+  color: white;
 }
 
 .sidebar__header--right {
@@ -48,7 +49,7 @@
 .sidebar__search {
   display: flex;
   align-items: center;
-  background-color: #f6f6f6;
+  background-color: black;
   padding: 10px;
   border-right: 1px solid lightgrey;
 }
@@ -107,6 +108,9 @@
   place-items: center;
 }
 
+.sidebar__menu--home {
+}
+
 .sidebar__menu div > .MuiSvgIcon-root {
   fill: #0000008a;
 }
@@ -125,7 +129,7 @@
 
 .sidebar__chat--container {
   flex: 1;
-  background-color: white;
+  background-color: black;
   overflow: scroll;
   position: relative;
 }

@@ -148,7 +148,7 @@ export default function Sidebar({ user, page }) {
       {page.isMobile ? (
         <Switch>
           <Route path="/chats">
-            <SidebarList titlie="Chats" data={chats} />
+            <SidebarList title="Chats" data={chats} />
           </Route>
           <Route path="/rooms">
             <SidebarList title="Rooms" data={rooms} />
@@ -157,7 +157,7 @@ export default function Sidebar({ user, page }) {
             <SidebarList title="Users" data={users} />
           </Route>
           <Route path="/search">
-            <SidebarList title="Chats" data={searchResults} />
+            <SidebarList title="Search Results" data={searchResults} />
           </Route>
         </Switch>
       ) : menu === 1 ? (

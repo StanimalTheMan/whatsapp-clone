@@ -15,6 +15,8 @@ import useChatMessages from "../hooks/useChatMessages";
 export default function Chat({ user, page }) {
   const [image, setImage] = React.useState(null);
   const [input, setInput] = React.useState("");
+  const [isDeleting, setDeleting] = React.useState(false);
+  const [openMenu, setOpenMenu] = React.useState(null);
   const [src, setSrc] = React.useState("");
   const [audioId, setAudioId] = React.useState("");
 
@@ -141,10 +143,20 @@ export default function Chat({ user, page }) {
               <AddPhotoAlternate />
             </label>
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={(event) => {
+              setOpenMenu(event.currentTarget);
+            }}
+          >
             <MoreVert />
           </IconButton>
-          <Menu id="menu" keepMounted open={false}>
+          <Menu
+            id="menu"
+            anchorEl={openMenu}
+            open={Boolean(openMenu)}
+            onClose={() => setOpenMenu(null)}
+            keepMounted
+          >
             <MenuItem>Delete Room</MenuItem>
           </Menu>
         </div>

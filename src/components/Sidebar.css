@@ -89,7 +89,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ededed;
+  background-color: black;
   border-right: 1px solid lightgrey;
 }
 
@@ -112,14 +112,14 @@
 }
 
 .sidebar__menu div > .MuiSvgIcon-root {
-  fill: #0000008a;
+  fill: #fff;
 }
 
 .sidebar__menu div > .sidebar__menu--line {
   opacity: 0;
   width: 100%;
   height: 3px;
-  background: #0000008a;
+  background: #fff;
   margin-top: 5px;
 }
 

@@ -86,15 +86,61 @@ export default function AudioPlayer({
     return `${minutes}:${seconds}`;
   }
 
+  function playAudio() {
+    setPlaying(true);
+    audio.current.play();
+    if (audioId !== id) {
+      setAudioId(id);
+    }
+    interval.current = setInterval(updateSlider, 100);
+  }
+
+  function updateSlider() {
+    let sliderPosition = 0;
+
+    const { currentTime, duration } = audio.current;
+    if (typeof duration === "number") {
+      sliderPosition = currentTime * (100 / duration);
+      setSliderValue(sliderPosition);
+      const time = formatTime(currentTime);
+      setDuration(time);
+    }
+  }
+
+  function stopAudio() {
+    audio.current.pause();
+    clearInterval(interval.current);
+    setPlaying(false);
+    setDuration(totalDuration.current);
+  }
+
+  function scrubAudio(event) {
+    const value = event.target.value;
+    const { duration } = audio.current;
+
+    if (isMediaLoaded) {
+      const seekTo = duration * (value / 100);
+      audio.current.currentTime = seekTo;
+      setSliderValue(value);
+    }
+  }
+
+  React.useEffect(() => {
+    if (audioId !== id) {
+      audio.current.pause();
+      setPlaying(false);
+    }
+  }, [audioId]);
+
   return (
     <>
       <div className={`audioplayer ${sender ? "" : "audioplayer__alt"}`}>
         {!isMediaLoaded ? (
           <CircularProgress />
         ) : isPlaying ? (
-          <PauseRounded className="pause" />
+          <PauseRounded onClick={stopAudio} className="pause" />
         ) : !isPlaying ? (
-          <PlayArrowRounded />
+          <PlayArrowRounded onClick={playAudio} />
         ) : null}
         <div>
           <span
@@ -106,6 +152,7 @@ export default function AudioPlayer({
             min="1"
             max="100"
             value={sliderValue}
+            onChange={scrubAudio}
             className="audioplayer__slider"
           />
         </div>

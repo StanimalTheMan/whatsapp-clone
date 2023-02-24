@@ -2,4 +2,4 @@ https://elegant-pavlova-3a0829.netlify.app/ is the deployed link to the lite web
 
 # DEMO
 
-<video src='recording.mov' width=180/>
+<video src='recording.mov' width=180></video>

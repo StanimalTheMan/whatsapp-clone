@@ -2,4 +2,4 @@ https://elegant-pavlova-3a0829.netlify.app/ is the deployed link to the lite web
 
 # DEMO
 
-<img src="./demo.gif" alt="a walkthrough of app features" height="300" />
+<img src="./demo.gif" alt="a walkthrough of app features" height="500" />
